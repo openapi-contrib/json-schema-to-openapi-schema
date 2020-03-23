@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov"
   },
   "repository": "github:openapi-contrib/json-schema-to-openapi-schema",
   "author": "OpenAPI Contrib",
