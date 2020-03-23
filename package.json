@@ -18,6 +18,7 @@
     "mocha": "^7.1.1",
     "nock": "^11.3.6",
     "nyc": "^15.0.0",
+    "semantic-release": "^17.0.4",
     "should": "^13.2.0"
   },
   "dependencies": {
