@@ -26,6 +26,27 @@ it('not dereferencing schema by default', async () => {
   should(result).deepEqual(expected, 'result does not match the expected');
 });
 
+it('running convert.sync is sync version equivalent to dereference: false', () => {
+  const schema = {
+    $schema: 'http://json-schema.org/draft-04/schema#',
+    properties: {
+      foo: {
+        $ref: '#/definitions/foo',
+      },
+    },
+    definitions: {
+      foo: ['string', 'null'],
+    },
+  };
+
+  const result = convert.sync(JSON.parse(JSON.stringify(schema)));
+
+  const expected = { ...schema };
+  delete expected.$schema;
+
+  should(result).deepEqual(expected, 'result does not match the expected');
+});
+
 it('dereferencing schema with deference option', async () => {
   const schema = {
     $schema: 'http://json-schema.org/draft-04/schema#',

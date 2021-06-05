@@ -44,6 +44,22 @@ async function convert(schema, options = {}) {
 	return schema;
 }
 
+// we want to expose a non-async function that will skip dereferencing
+// but because the module only exposes a single function, we attach it to the main function
+// so we dont have to introduce a breaking change
+convert.sync = function convertSync(schema, options = {}) {
+	const { cloneSchema = true } = options;
+
+	if (cloneSchema) {
+		schema = JSON.parse(JSON.stringify(schema));
+	}
+
+	const vocab = schemaWalker.getVocabulary(schema, schemaWalker.vocabularies.DRAFT_04);
+	schemaWalker.schemaWalk(schema, convertSchema, null, vocab);
+	return schema;
+}
+
+
 function stripIllegalKeywords(schema) {
 	delete schema['$schema'];
 	delete schema['$id'];
