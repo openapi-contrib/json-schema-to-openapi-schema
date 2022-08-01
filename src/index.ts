@@ -236,8 +236,8 @@ function rewriteIfThenElse(schema: SchemaType) {
   */
 	if ('if' in schema && schema.if && schema.then) {
 		schema.oneOf = [
-			{ allOf: [schema.if, schema.then] },
-			{ allOf: [{ not: schema.if }, schema.else] },
+			{ allOf: [schema.if, schema.then].filter(Boolean) },
+			{ allOf: [{ not: schema.if }, schema.else].filter(Boolean) },
 		];
 		delete schema.if;
 		delete schema.then;

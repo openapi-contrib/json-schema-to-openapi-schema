@@ -21,3 +21,74 @@ it('if-then-else', async ({ expect }) => {
 
 	expect(result).toEqual(expected);
 });
+
+it('if-then', async ({ expect }) => {
+	const schema = {
+		$schema: 'http://json-schema.org/draft-07/schema#',
+		type: 'object',
+		properties: {
+			type: {
+				type: 'string',
+				enum: ['css', 'js', 'i18n', 'json'],
+			},
+			locale: {
+				type: 'string',
+			},
+		},
+		if: {
+			properties: {
+				type: {
+					const: 'i18n',
+				},
+			},
+		},
+		then: {
+			required: ['locale'],
+		},
+	};
+	const result = await convert(schema);
+
+	const expected = {
+		type: 'object',
+		properties: {
+			type: {
+				type: 'string',
+				enum: ['css', 'js', 'i18n', 'json'],
+			},
+			locale: {
+				type: 'string',
+			},
+		},
+		oneOf: [
+			{
+				allOf: [
+					{
+						properties: {
+							type: {
+								enum: ['i18n'],
+							},
+						},
+					},
+					{
+						required: ['locale'],
+					},
+				],
+			},
+			{
+				allOf: [
+					{
+						not: {
+							properties: {
+								type: {
+									enum: ['i18n'],
+								},
+							},
+						},
+					},
+				],
+			},
+		],
+	};
+
+	expect(result).toEqual(expected);
+});
