@@ -1,6 +1,6 @@
 {
 	"name": "browser-json-schema-to-openapi-schema",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Converts a JSON Schema to OpenAPI Schema Object",
 	"bin": {
 		"json-schema-to-openapi-schema": "bin/json-schema-to-openapi-schema.js"
