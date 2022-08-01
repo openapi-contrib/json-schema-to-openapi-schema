@@ -49,6 +49,142 @@ it('dereferencing schema with deference option', async ({ expect }) => {
 	expect(result).toEqual(expected);
 });
 
+it('dereferencing schema with deference option at root', async ({ expect }) => {
+	const schema = {
+		definitions: {
+			AgilityServerWebServicesSDKServerServiceSVCJSONGetNavigationMenu2PostRequest:
+				{
+					type: 'object',
+					additionalProperties: false,
+					properties: {
+						navigationMenuIdentity: {
+							$ref: '#/definitions/NavigationMenuIdentity',
+						},
+						sessionId: {
+							type: 'string',
+						},
+					},
+					required: [],
+					title:
+						'AgilityServerWebServicesSDKServerServiceSVCJSONGetNavigationMenu2PostRequest',
+				},
+			NavigationMenuIdentity: {
+				type: 'object',
+				additionalProperties: false,
+				properties: {
+					Id: {
+						type: 'string',
+					},
+					LastModifiedDate: {
+						type: 'string',
+					},
+					Name: {
+						type: 'string',
+					},
+					__type: {
+						type: 'string',
+					},
+				},
+				required: [],
+				title: 'NavigationMenuIdentity',
+			},
+		},
+		$ref: '#/definitions/AgilityServerWebServicesSDKServerServiceSVCJSONGetNavigationMenu2PostRequest',
+	};
+
+	const result = await convert(schema, { dereference: true });
+
+	const expected = {
+		type: 'object',
+		additionalProperties: false,
+		properties: {
+			navigationMenuIdentity: {
+				type: 'object',
+				additionalProperties: false,
+				properties: {
+					Id: {
+						type: 'string',
+					},
+					LastModifiedDate: {
+						type: 'string',
+					},
+					Name: {
+						type: 'string',
+					},
+					__type: {
+						type: 'string',
+					},
+				},
+				required: [],
+				title: 'NavigationMenuIdentity',
+			},
+			sessionId: {
+				type: 'string',
+			},
+		},
+		required: [],
+		title:
+			'AgilityServerWebServicesSDKServerServiceSVCJSONGetNavigationMenu2PostRequest',
+		definitions: {
+			AgilityServerWebServicesSDKServerServiceSVCJSONGetNavigationMenu2PostRequest:
+				{
+					type: 'object',
+					additionalProperties: false,
+					properties: {
+						navigationMenuIdentity: {
+							type: 'object',
+							additionalProperties: false,
+							properties: {
+								Id: {
+									type: 'string',
+								},
+								LastModifiedDate: {
+									type: 'string',
+								},
+								Name: {
+									type: 'string',
+								},
+								__type: {
+									type: 'string',
+								},
+							},
+							required: [],
+							title: 'NavigationMenuIdentity',
+						},
+						sessionId: {
+							type: 'string',
+						},
+					},
+					required: [],
+					title:
+						'AgilityServerWebServicesSDKServerServiceSVCJSONGetNavigationMenu2PostRequest',
+				},
+			NavigationMenuIdentity: {
+				type: 'object',
+				additionalProperties: false,
+				properties: {
+					Id: {
+						type: 'string',
+					},
+					LastModifiedDate: {
+						type: 'string',
+					},
+					Name: {
+						type: 'string',
+					},
+					__type: {
+						type: 'string',
+					},
+				},
+				required: [],
+				title: 'NavigationMenuIdentity',
+			},
+		},
+	};
+
+	expect(result).toEqual(expected);
+});
+
 it('dereferencing schema with remote http and https references', async ({
 	expect,
 }) => {
