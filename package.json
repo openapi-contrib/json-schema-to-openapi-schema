@@ -20,6 +20,8 @@
 	"scripts": {
 		"prepublish": "yarn build",
 		"build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node scripts/fixup.cjs",
+		"lint": "eslint . && prettier -c src",
+		"lint:fix": "eslint . --fix && prettier -c src -w",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest",
 		"coverage": "vitest --coverage"
@@ -28,15 +30,15 @@
 	"author": "OpenAPI Contrib",
 	"license": "MIT",
 	"engines": {
-		"node": ">=10"
+		"node": ">=14"
 	},
 	"dependencies": {
 		"@apidevtools/json-schema-ref-parser": "^9.0.9",
-		"chalk": "^5.0.1",
 		"json-schema-walker": "^0.0.4",
 		"yargs": "^17.5.1"
 	},
 	"devDependencies": {
+		"@types/json-schema": "^7.0.11",
 		"@typescript-eslint/eslint-plugin": "^5.32.0",
 		"@typescript-eslint/parser": "^5.32.0",
 		"c8": "^7.12.0",
@@ -44,7 +46,6 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-unused-imports": "^2.0.0",
-		"mocha": "^10.0.0",
 		"nock": "^13.2.9",
 		"prettier": "^2.7.1",
 		"typescript": "^4.7.4",
