@@ -5,16 +5,16 @@
 	"bin": {
 		"json-schema-to-openapi-schema": "bin/json-schema-to-openapi-schema.js"
 	},
-	"types": "dist/mjs/src/index.d.ts",
+	"types": "dist/mjs/index.d.ts",
 	"files": [
 		"/dist"
 	],
-	"main": "dist/cjs/src/index.js",
-	"module": "dist/mjs/src/index.js",
+	"main": "dist/cjs/index.js",
+	"module": "dist/mjs/index.js",
 	"exports": {
 		".": {
-			"import": "./dist/mjs/src/index.js",
-			"require": "./dist/cjs/src/index.js"
+			"import": "./dist/mjs/index.js",
+			"require": "./dist/cjs/index.js"
 		}
 	},
 	"scripts": {
