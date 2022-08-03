@@ -21,6 +21,12 @@ it('not dereferencing schema by default', async ({ expect }) => {
 	if ('$schema' in expected) {
 		delete expected.$schema;
 	}
+	expected.definitions = {
+		foo: {
+			type: 'string',
+			nullable: true,
+		},
+	};
 
 	expect(result).toEqual(expected);
 });
@@ -42,7 +48,7 @@ it('dereferencing schema with deference option', async ({ expect }) => {
 		type: 'string',
 		nullable: true,
 		definitions: {
-			foo: ['string', 'null'],
+			foo: { type: 'string', nullable: true },
 		},
 	};
 

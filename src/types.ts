@@ -8,6 +8,7 @@ export type addPrefixToObject = {
 export interface Options {
 	cloneSchema?: boolean;
 	dereference?: boolean;
+	convertUnreferencedDefinitions?: boolean;
 	dereferenceOptions?: $RefParser.Options;
 }
 type ExtendedJSONSchema = addPrefixToObject & JSONSchema;
