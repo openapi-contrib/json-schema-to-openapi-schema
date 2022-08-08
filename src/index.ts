@@ -6,7 +6,7 @@ import type {
 } from 'json-schema';
 import type { Options, SchemaType, SchemaTypeKeys } from './types';
 import { Walker } from 'json-schema-walker';
-import { allowedKeywords } from './const';
+import { allowedKeywords } from './const.js';
 import type { OpenAPI3 } from 'openapi-typescript';
 
 class InvalidTypeError extends Error {
