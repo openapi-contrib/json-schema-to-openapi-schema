@@ -4,11 +4,10 @@ export default defineConfig({
 	test: {
 		globals: true,
 		watch: false,
-		threads: false,
 		isolate: false,
 		reporters: 'verbose',
 	},
 	esbuild: {
-		target: 'node21',
+		target: 'node22',
 	},
 });
