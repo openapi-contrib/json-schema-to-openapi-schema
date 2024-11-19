@@ -7,7 +7,7 @@ import type { Options, SchemaType, SchemaTypeKeys } from './types';
 import { Walker } from 'json-schema-walker';
 import { allowedKeywords } from './const';
 import type { OpenAPIV3 } from 'openapi-types';
-import type { JSONSchema } from '@apidevtools/json-schema-ref-parser/dist/lib/types';
+import type { JSONSchema } from '@apidevtools/json-schema-ref-parser';
 
 class InvalidTypeError extends Error {
 	constructor(message: string) {

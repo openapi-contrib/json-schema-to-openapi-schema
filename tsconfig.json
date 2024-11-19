@@ -1,6 +1,5 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
 		"outDir": "dist",
 		"target": "es2020",
 		"allowJs": true,

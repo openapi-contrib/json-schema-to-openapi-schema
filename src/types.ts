@@ -1,5 +1,5 @@
-import type { JSONSchema } from '@apidevtools/json-schema-ref-parser/dist/lib/types';
-import type { ParserOptions } from '@apidevtools/json-schema-ref-parser/dist/lib/options';
+import type { JSONSchema } from '@apidevtools/json-schema-ref-parser';
+import type { ParserOptions } from '@apidevtools/json-schema-ref-parser';
 
 export type addPrefixToObject = {
 	[K in keyof JSONSchema as `x-${K}`]: JSONSchema[K];
