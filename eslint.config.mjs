@@ -24,9 +24,6 @@ export default tseslint.config({
 		eslint.configs.recommended,
 		...tseslint.configs.recommended,
 	],
-	settings: {
-		react: { version: 'detect' },
-	},
 	plugins: {
 		prettierPlugin,
 		'unused-imports': fixupPluginRules(unusedImportsPlugin),
