@@ -11,7 +11,7 @@
 		"lib": ["esnext"],
 		"listEmittedFiles": false,
 		"listFiles": false,
-		"moduleResolution": "Node",
+		"moduleResolution": "Bundler",
 		"noFallthroughCasesInSwitch": true,
 		"pretty": true,
 		"resolveJsonModule": true,

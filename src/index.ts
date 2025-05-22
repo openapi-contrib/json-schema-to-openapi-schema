@@ -70,7 +70,7 @@ const handleDefinition = async <T extends JSONSchema4 = JSONSchema4>(
 	return def;
 };
 
-const convert = async <T extends object = JSONSchema4>(
+export const convert = async <T extends object = JSONSchema4>(
 	schema: T,
 	options?: Options,
 ): Promise<OpenAPIV3.Document> => {
