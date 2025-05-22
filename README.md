@@ -24,8 +24,8 @@ Requires NodeJS v10 or greater.
 
 Here's a small example to get the idea:
 
-```js
-const convert = require('@openapi-contrib/json-schema-to-openapi-schema');
+```ts
+import { convert } from '@openapi-contrib/json-schema-to-openapi-schema';
 
 const schema = {
 	$schema: 'http://json-schema.org/draft-04/schema#',

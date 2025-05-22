@@ -1,4 +1,4 @@
-import convert from '../src';
+import { convert } from '../src';
 
 it('cloning schema by default', async ({ expect }) => {
 	const schema = {
