@@ -36,28 +36,28 @@
 		"node": ">=18"
 	},
 	"dependencies": {
-		"@apidevtools/json-schema-ref-parser": "^12.0.2",
-		"json-schema-walker": "^3.0.0",
+		"@apidevtools/json-schema-ref-parser": "^13.0.0",
+		"json-schema-walker": "^3.0.1",
 		"openapi-types": "^12.1.3",
-		"yargs": "^17.7.2"
+		"yargs": "^18.0.0"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.9",
-		"@eslint/js": "^9.27.0",
+		"@eslint/js": "^9.28.0",
 		"@types/json-schema": "^7.0.15",
 		"c8": "^10.1.3",
-		"eslint": "^9.27.0",
+		"eslint": "^9.28.0",
 		"eslint-config-prettier": "^10.1.5",
-		"eslint-plugin-prettier": "^5.4.0",
+		"eslint-plugin-prettier": "^5.4.1",
 		"eslint-plugin-unused-imports": "^4.1.4",
-		"globals": "^16.1.0",
-		"nock": "^14.0.4",
+		"globals": "^16.2.0",
+		"nock": "^14.0.5",
 		"prettier": "^3.5.3",
 		"rimraf": "^6.0.1",
 		"tsup": "^8.5.0",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.32.1",
-		"vitest": "^3.1.4"
+		"typescript-eslint": "^8.33.1",
+		"vitest": "^3.2.1"
 	},
 	"prettier": {
 		"singleQuote": true,
