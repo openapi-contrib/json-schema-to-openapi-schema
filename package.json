@@ -36,7 +36,7 @@
 		"node": ">=18"
 	},
 	"dependencies": {
-		"@apidevtools/json-schema-ref-parser": "^13.0.0",
+		"@apidevtools/json-schema-ref-parser": "^13.0.2",
 		"json-schema-walker": "^3.0.1",
 		"openapi-types": "^12.1.3",
 		"yargs": "^18.0.0"
@@ -57,7 +57,7 @@
 		"tsup": "^8.5.0",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.33.1",
-		"vitest": "^3.2.1"
+		"vitest": "^3.2.2"
 	},
 	"prettier": {
 		"singleQuote": true,
