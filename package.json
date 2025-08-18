@@ -30,7 +30,7 @@
 		"coverage": "vitest --coverage"
 	},
 	"repository": "github:openapi-contrib/json-schema-to-openapi-schema",
-	"author": "OpenAPI Contrib",
+	"author": "JonLuca DeCaro <apis@jonlu.ca>",
 	"license": "MIT",
 	"engines": {
 		"node": ">=18"
