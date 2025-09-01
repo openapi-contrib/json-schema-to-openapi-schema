@@ -3,10 +3,10 @@ import type {
 	JSONSchema6Definition,
 	JSONSchema7Definition,
 } from 'json-schema';
-import type { Options, SchemaType, SchemaTypeKeys } from './types';
+import type { Options, OptionsSync, SchemaType, SchemaTypeKeys } from './types';
 import { Walker } from 'json-schema-walker';
 import { allowedKeywords } from './const';
-import type { OpenAPIV3 } from 'openapi-types';
+import { type OpenAPIV3 } from 'openapi-types';
 import type { JSONSchema } from '@apidevtools/json-schema-ref-parser';
 
 class InvalidTypeError extends Error {
@@ -70,6 +70,51 @@ const handleDefinition = async <T extends JSONSchema4 = JSONSchema4>(
 	return def;
 };
 
+const handleDefinitionSync = <T extends JSONSchema4 = JSONSchema4>(
+	def: JSONSchema7Definition | JSONSchema6Definition | JSONSchema4,
+	schema: T,
+) => {
+	if (typeof def !== 'object') {
+		return def;
+	}
+
+	const type = def.type;
+	if (type) {
+		// Walk just the definitions types
+		const walker = new Walker<T>();
+		walker.loadSchemaSync(
+			{
+				definitions: schema['definitions'] || [],
+				...def,
+				$schema: schema['$schema'],
+			} as any,
+			{
+				cloneSchema: true,
+			},
+		);
+		walker.walkSync(convertSchema, walker.vocabularies.DRAFT_07);
+		if ('definitions' in walker.rootSchema) {
+			delete (<any>walker.rootSchema).definitions;
+		}
+		return walker.rootSchema;
+	}
+	if (Array.isArray(def)) {
+		// if it's an array, we might want to reconstruct the type;
+		const typeArr = def;
+		const hasNull = typeArr.includes('null');
+		if (hasNull) {
+			const actualTypes = typeArr.filter((l) => l !== 'null');
+			return {
+				type: actualTypes.length === 1 ? actualTypes[0] : actualTypes,
+				nullable: true,
+				// this is incorrect but thats ok, we are in the inbetween phase here
+			} as JSONSchema7Definition | JSONSchema6Definition | JSONSchema4;
+		}
+	}
+
+	return def;
+};
+
 export const convert = async <T extends object = JSONSchema4>(
 	schema: T,
 	options?: Options,
@@ -84,6 +129,25 @@ export const convert = async <T extends object = JSONSchema4>(
 		for (const defName in rootSchema.definitions) {
 			const def = rootSchema.definitions[defName];
 			rootSchema.definitions[defName] = await handleDefinition(def, schema);
+		}
+	}
+	return rootSchema as OpenAPIV3.Document;
+};
+
+export const convertSync = <T extends object = JSONSchema4>(
+	schema: T,
+	options?: OptionsSync,
+): OpenAPIV3.Document => {
+	const walker = new Walker<T>();
+	const convertDefs = options?.convertUnreferencedDefinitions ?? true;
+	walker.loadSchemaSync(schema, options);
+	walker.walkSync(convertSchema, walker.vocabularies.DRAFT_07);
+	// if we want to convert unreferenced definitions, we need to do it iteratively here
+	const rootSchema = walker.rootSchema as unknown as JSONSchema;
+	if (convertDefs && rootSchema?.definitions) {
+		for (const defName in rootSchema.definitions) {
+			const def = rootSchema.definitions[defName];
+			rootSchema.definitions[defName] = handleDefinitionSync(def, schema);
 		}
 	}
 	return rootSchema as OpenAPIV3.Document;

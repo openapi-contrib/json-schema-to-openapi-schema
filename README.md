@@ -86,6 +86,74 @@ Options:
     -d, --dereference       If set all local and remote references (http/https and file) $refs will be dereferenced
 ```
 
+## Synchronous API
+
+For synchronous conversion without async operations, use `convertSync`:
+
+```ts
+import { convertSync } from '@openapi-contrib/json-schema-to-openapi-schema';
+
+const schema = {
+	$schema: 'http://json-schema.org/draft-04/schema#',
+	type: ['string', 'null'],
+	format: 'date-time',
+};
+
+const convertedSchema = convertSync(schema);
+console.log(convertedSchema);
+```
+
+This will output the same result as the async version:
+
+```js
+{
+  type: 'string',
+  format: 'date-time',
+  nullable: true
+}
+```
+
+### Options for convertSync
+
+`convertSync` supports a subset of the options available to `convert`:
+
+#### `cloneSchema` (boolean)
+
+If set to `false`, converts the provided schema in place. If `true`, clones the schema by converting it to JSON and back. The overhead of the cloning is usually negligible. Defaults to `true`.
+
+#### `convertUnreferencedDefinitions` (boolean)
+
+Defaults to `true`.
+
+If a schema has a `definitions` property (valid in JSON Schema), and only some entries are referenced, we'll still try to convert the remaining definitions to OpenAPI. If you do not want this behavior, set this to `false`.
+
+### ⚠️ Limitations
+
+`convertSync` does **not** support dereferencing external references (`$ref` to HTTP/HTTPS URLs or external files). If your schema contains external references, use the async `convert` function with the `dereference: true` option instead.
+
+#### Example:
+
+```ts
+// Schema with external reference
+const schema = {
+	type: 'object',
+	properties: {
+		user: {
+			$ref: 'https://example.com/schemas/user.json',
+		},
+	},
+};
+
+// convertSync leaves the reference unresolved
+const result = convertSync(schema);
+// Result: { type: 'object', properties: { user: { $ref: 'https://example.com/schemas/user.json' } } }
+
+// Use async convert for proper resolution:
+const resolved = await convert(schema, { dereference: true });
+```
+
+**Note:** External references will remain as `$ref` pointers in the output schema. They will not be expanded or validated.
+
 ## Why?
 
 OpenAPI is often described as an extension of JSON Schema, but both specs have changed over time and grown independently. OpenAPI v2 was based on JSON Schema draft v4 with a long list of deviations, but OpenAPI v3 shrank that list, upping their support to draft v4 and making the list of discrepancies shorter. This has been solved for OpenAPI v3.1, but for those using OpenAPI v3.0, you can use this tool to solve [the divergence](https://apisyouwonthate.com/blog/openapi-and-json-schema-divergence).
