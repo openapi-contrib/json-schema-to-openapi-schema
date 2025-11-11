@@ -11,6 +11,12 @@ export interface Options {
 	convertUnreferencedDefinitions?: boolean;
 	dereferenceOptions?: ParserOptions | undefined;
 }
+
+export interface OptionsSync {
+	cloneSchema?: boolean;
+	convertUnreferencedDefinitions?: boolean;
+}
+
 type ExtendedJSONSchema = addPrefixToObject & JSONSchema;
 export type SchemaType = ExtendedJSONSchema & {
 	example?: JSONSchema['examples'][number];
