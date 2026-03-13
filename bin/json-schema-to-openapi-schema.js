@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-const yargs = require('yargs');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 const converter = require('../dist/index.js').default;
 const helpText = require('./help-text.json');
 const fs = require('fs');
@@ -35,7 +36,7 @@ const readFileAsync = require('util').promisify(fs.readFile);
  */
 function parseArgs() {
 	// Configure the argument parser
-	yargs
+	const parser = yargs(hideBin(process.argv))
 		.option('d', {
 			alias: 'dereference',
 			type: 'boolean',
@@ -47,13 +48,13 @@ function parseArgs() {
 		});
 
 	// Show the version number on "--version" or "-v"
-	yargs.version().alias('v', 'version');
+	parser.version().alias('v', 'version');
 
 	// Disable the default "--help" behavior
-	yargs.help(false);
+	parser.help(false);
 
 	// Parse the command-line arguments
-	let args = yargs.argv;
+	let args = parser.parseSync();
 
 	// Normalize the parsed arguments
 	let parsed = {
