@@ -5,18 +5,7 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@apidevtools/json-schema-ref-parser@npm:^15.0.0":
-  version: 15.3.1
-  resolution: "@apidevtools/json-schema-ref-parser@npm:15.3.1"
-  dependencies:
-    js-yaml: "npm:^4.1.1"
-  peerDependencies:
-    "@types/json-schema": ^7.0.15
-  checksum: 10c0/31995e8e199b57605c48089adf9df216823463204104d9013717b810ad25784fc5112631848fe8231c2d7e332c505b9511de781d4ec030d62cde3412ad0f9264
-  languageName: node
-  linkType: hard
-
-"@apidevtools/json-schema-ref-parser@npm:^15.3.2":
+"@apidevtools/json-schema-ref-parser@npm:^15.0.0, @apidevtools/json-schema-ref-parser@npm:^15.3.2":
   version: 15.3.2
   resolution: "@apidevtools/json-schema-ref-parser@npm:15.3.2"
   dependencies:
