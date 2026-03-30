@@ -39,8 +39,8 @@
 		"openapi-types": "*"
 	},
 	"dependencies": {
-		"@apidevtools/json-schema-ref-parser": "^15.3.2",
-		"json-schema-walker": "^3.2.0",
+		"@apidevtools/json-schema-ref-parser": "^15.3.4",
+		"json-schema-walker": "^3.3.0",
 		"yargs": "^18.0.0"
 	},
 	"devDependencies": {
@@ -60,7 +60,7 @@
 		"tsup": "^8.5.1",
 		"typescript": "^6.0.2",
 		"typescript-eslint": "^8.57.2",
-		"vitest": "^4.1.1"
+		"vitest": "^4.1.2"
 	},
 	"prettier": {
 		"singleQuote": true,
