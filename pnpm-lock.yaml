@@ -4,8 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-packageExtensionsChecksum: sha256-vYDIQAKFUb6vMmJ0C3p+Xy9mjEvpgrYTsowTyyeVkNI=
-
 importers:
 
   .:
@@ -14,8 +12,8 @@ importers:
         specifier: ^15.3.6
         version: 15.3.6(@types/json-schema@7.0.15)
       json-schema-walker:
-        specifier: ^3.3.0
-        version: 3.3.0
+        specifier: ^3.3.1
+        version: 3.3.1
       yargs:
         specifier: ^18.0.0
         version: 18.0.0
@@ -1063,8 +1061,8 @@ packages:
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
-  json-schema-walker@3.3.0:
-    resolution: {integrity: sha512-M+M1fcDuMDm/vVajtm/1Zj+dyZqz1757bdu2qDknSm5xPIAm2TdUn/w1jd3Jgxb5DU2q5UR6CQQBrgy9eHYm4w==}
+  json-schema-walker@3.3.1:
+    resolution: {integrity: sha512-75zF7uMRfvnSTNmzB/wVm1AbSCHnFu8FfAMowWN4MOIgE3taj1b+NyWDLhi3Q64UqrQSi1EhdiltXsNabF8N+A==}
     engines: {node: '>=17'}
 
   json-stable-stringify-without-jsonify@1.0.1:
@@ -2440,7 +2438,7 @@ snapshots:
 
   json-schema-traverse@0.4.1: {}
 
-  json-schema-walker@3.3.0:
+  json-schema-walker@3.3.1:
     dependencies:
       '@apidevtools/json-schema-ref-parser': 15.3.6(@types/json-schema@7.0.15)
       '@types/json-schema': 7.0.15

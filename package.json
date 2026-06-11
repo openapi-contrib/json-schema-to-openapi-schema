@@ -40,7 +40,7 @@
 	},
 	"dependencies": {
 		"@apidevtools/json-schema-ref-parser": "^15.3.6",
-		"json-schema-walker": "^3.3.0",
+		"json-schema-walker": "^3.3.1",
 		"yargs": "^18.0.0"
 	},
 	"devDependencies": {

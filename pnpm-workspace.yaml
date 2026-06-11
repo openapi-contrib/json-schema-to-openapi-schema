@@ -6,8 +6,4 @@ allowBuilds:
 
 minimumReleaseAgeExclude:
   - '@apidevtools/json-schema-ref-parser@15.3.6'
-
-packageExtensions:
-  json-schema-walker@*:
-    dependencies:
-      "@types/json-schema": ^7.0.15
+  - json-schema-walker@3.3.1
