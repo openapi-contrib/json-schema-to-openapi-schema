@@ -33,7 +33,7 @@
 	"author": "JonLuca DeCaro <apis@jonlu.ca>",
 	"license": "MIT",
 	"engines": {
-		"node": ">=18"
+		"node": ">=22.13"
 	},
 	"peerDependencies": {
 		"openapi-types": "*"
@@ -66,5 +66,5 @@
 		"singleQuote": true,
 		"useTabs": true
 	},
-	"packageManager": "pnpm@11.5.2"
+	"packageManager": "pnpm@11.5.3"
 }

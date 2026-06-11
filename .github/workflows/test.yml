@@ -1,31 +1,43 @@
 name: Tests
 
-on: push
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Node.js ${{ matrix.node-version }}
+    runs-on: ubuntu-24.04
     strategy:
+      fail-fast: false
       matrix:
         node-version:
-          - 20
-          - 22
-          - latest
+          - 22.x
+          - 24.x
+          - 26.x
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 11.5.2
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-      - name: pnpm install, build, and test
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm build
-          pnpm lint
-          pnpm test
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm build
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Test
+        run: pnpm test
         env:
           CI: true
