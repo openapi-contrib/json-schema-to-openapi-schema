@@ -13,16 +13,19 @@ jobs:
           - latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.5.2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-      - name: yarn install, build, and test
+          cache: 'pnpm'
+      - name: pnpm install, build, and test
         run: |
-          yarn install --immutable
-          yarn build
-          yarn lint
-          yarn test
+          pnpm install --frozen-lockfile
+          pnpm build
+          pnpm lint
+          pnpm test
         env:
           CI: true
