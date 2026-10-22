@@ -21,10 +21,10 @@ jobs:
           fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@v6
-      - name: Use Node.js 24.x
+      - name: Use Node.js 26.12.1
         uses: actions/setup-node@v6
         with:
-          node-version: 24.x
+          node-version: "26.12.1"
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install dependencies
